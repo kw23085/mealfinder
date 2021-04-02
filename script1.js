@@ -20,6 +20,7 @@ function searchMeal(e) {
         fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchedMeal}`)
         .then(res => res.json())
         .then(data => {
+
             resultEl.innerHTML = `<h2>Search Results for ${searchedMeal}</h2>`;
 
             if(data.meals === null) {
@@ -44,7 +45,6 @@ function searchMeal(e) {
     };
 
 
-
 };
 
 
@@ -55,7 +55,6 @@ function getMealById(mealID) {
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`)
     .then(res => res.json())
     .then(data => {
-        
         const meal = data.meals[0];
 
         addMealToDOM(meal);
@@ -161,22 +160,18 @@ function getRandomMeal() {
 
 
 
-
-
 // Event listener
 submit.addEventListener('submit', searchMeal);
 random.addEventListener('click', getRandomMeal);
 
 mealsEl.addEventListener('click', e => {
-
     const mealInfo = e.path.find( item => {
-
+        console.log(e);
         if(item.classList) {
             return item.classList.contains('meal-info');
         } else {
             return false;
         }
-
     });
 
    if(mealInfo) {
